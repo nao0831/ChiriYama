@@ -15,6 +15,7 @@ import org.w3c.dom.Node;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,7 @@ public class ResultActivity extends Activity {
     private class SearchAmazonTask extends AsyncTask<Integer, Void, List<String>> {
 
         private int number;
+        private List<String> detailPageUrls = new ArrayList<String>();
 
         public SearchAmazonTask(int number) {
             this.number = number;
@@ -74,6 +76,9 @@ public class ResultActivity extends Activity {
                     Element url = urls.get(i);
                     String urlStr = url.getChildNodes().item(0).getNodeValue();
                     urlList.add(urlStr);
+                    Node item = url.getParentNode().getParentNode();
+                    String detailPageUrl = item.getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
+                    detailPageUrls.add(detailPageUrl);
                 }
                 return urlList;
             } catch (Exception e) {
@@ -85,23 +90,20 @@ public class ResultActivity extends Activity {
         @Override
         protected void onPostExecute(List<String> result) {
             super.onPostExecute(result);
-//            if (number == 0) {
-//                new SearchAmazonTask(2).execute(price * 30);
-//            } else if (number == 2) {
-//                new SearchAmazonTask(4).execute(price * 365);
-//            }
 
             if (result == null) {
                 Toast.makeText(ResultActivity.this, "通信中にエラーが起きました", Toast.LENGTH_LONG).show();
             } else {
+                ViewGroup whole = (ViewGroup)findViewById(R.id.whole);
+                final View child = whole.getChildAt(number);
                 if (result.size() == 0) {
                     Log.d(AppUtil.APP_NAME, "画像なかったよ");
+                    child.findViewById(R.id.progressBar1).setVisibility(View.GONE);
+                    child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
                 } else {
                     Log.d(AppUtil.APP_NAME, "画像あったから取得するよ");
                     String url = result.get(0);
-                    ViewGroup whole = (ViewGroup)findViewById(R.id.whole);
-                    final View child = whole.getChildAt(number);
-                    UrlImageView imageView = (UrlImageView)child.findViewById(R.id.amazon);
+                    final UrlImageView imageView = (UrlImageView)child.findViewById(R.id.amazon);
                     imageView.setImageUrl(url, new UrlImageView.OnImageLoadListener() {
                         @Override
                         public void onStart(String url) {
@@ -110,12 +112,13 @@ public class ResultActivity extends Activity {
                         @Override
                         public void onComplete(String url) {
                             child.findViewById(R.id.progressBar1).setVisibility(View.GONE);
+                            imageView.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(0)));
                         }
                     });
                     Log.d(AppUtil.APP_NAME, url);
                     if (result.size() > 1) {
                         Log.d(AppUtil.APP_NAME, "もう一枚画像を取得するよ");
-                        UrlImageView imageView2 = (UrlImageView)child.findViewById(R.id.amazon2);
+                        final UrlImageView imageView2 = (UrlImageView)child.findViewById(R.id.amazon2);
                         imageView2.setImageUrl(result.get(1),
                                 new UrlImageView.OnImageLoadListener() {
                                     @Override
@@ -125,11 +128,28 @@ public class ResultActivity extends Activity {
                                     @Override
                                     public void onComplete(String url) {
                                         child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
+                                        imageView2.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(1)));
                                     }
                                 });
+                    } else {
+                        child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
                     }
                 }
             }
+        }
+    }
+    
+    private class ImageOnClickListener implements View.OnClickListener {
+        private String url;
+        public ImageOnClickListener(String url) {
+            this.url = url;
+        }
+        
+        @Override
+        public void onClick(View v) {
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 

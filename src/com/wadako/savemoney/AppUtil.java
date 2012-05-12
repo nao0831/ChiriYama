@@ -134,4 +134,17 @@ public class AppUtil {
         SharedPreferences pref = ctx.getSharedPreferences(AppUtil.APP_NAME, Context.MODE_PRIVATE);
         return pref.getFloat(key, 0);
     }
+    
+    public static void removeEnvValue(Context context, String key) {
+        SharedPreferences pref = context.getSharedPreferences(AppUtil.APP_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.remove(key);
+        editor.commit();
+    }
+    
+    public static void removeEnvValueAll(Context context) {
+        SharedPreferences pref = context.getSharedPreferences(AppUtil.APP_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear().commit();
+    }
 }

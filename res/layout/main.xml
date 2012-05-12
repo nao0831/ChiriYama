@@ -20,36 +20,41 @@
         android:orientation="vertical" >
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/coinImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dip"
             android:layout_marginTop="120dip"
             android:src="@drawable/coin_192" />
 
-        <Button
-            android:id="@+id/endSaveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:text="今日はこれで終わり？" />
-
-        <Button
-            android:id="@+id/addSaveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/button1"
-            android:text="もっと節約した？" />
-
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="80dip"
+            android:layout_marginTop="70dip"
             android:src="@drawable/coinbank4_386" />
+
+        <ImageView
+            android:id="@+id/addSaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="14dp"
+            android:layout_marginBottom="4dip"
+            android:src="@drawable/button1" />
+
+        <ImageView
+            android:id="@+id/endSaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dip"
+            android:layout_marginBottom="4dip"
+            android:src="@drawable/button2" />
+
     </RelativeLayout>
 
     <FrameLayout

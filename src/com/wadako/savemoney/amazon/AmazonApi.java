@@ -3,8 +3,11 @@ package com.wadako.savemoney.amazon;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -33,6 +36,8 @@ public class AmazonApi {
     public static final String AWS_SECRET_KEY = "7BjBPlkXtJZFO17GHFfq4NrJvAyy82/clKzoUf0R";
 
     private static final int TIME_OUT = 30000;
+    
+    public static final List<String> categories = new ArrayList<String>();
 
     private SignedRequestsHelper helper;
 
@@ -46,6 +51,13 @@ public class AmazonApi {
             HttpConnectionParams.setConnectionTimeout(params, TIME_OUT); // 接続のタイムアウト
             HttpConnectionParams.setSoTimeout(params, TIME_OUT); // データ取得のタイムアウト
             client.setParams(params);
+            categories.add("Beauty");
+            categories.add("Electronics");
+            categories.add("Grocery");
+            categories.add("Hobbies");
+            categories.add("Kitchen");
+            categories.add("Software");
+            categories.add("Toys");
         } catch (Exception e) {
             e.printStackTrace();
             return;
@@ -53,19 +65,22 @@ public class AmazonApi {
     }
 
     public Node searchItemsByPrice(int price) throws ClientProtocolException, IOException, SAXException, ParserConfigurationException, FactoryConfigurationError {
-        int maxPrice = price * 15 / 10;
-        int minPrice = price * 5 / 10;
+        int maxPrice = price * 12 / 10;
+        int minPrice = price * 8 / 10;
+        
+        String category = getCategoryByRandom();
+        Log.d(AppUtil.APP_NAME, "category : " + category);
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("Service", "AWSECommerceService");
         params.put("Version", "2011-08-01");
         params.put("Operation", "ItemSearch");
-        params.put("ResponseGroup", "OfferFull,Images");
+        params.put("ResponseGroup", "OfferFull,Images,ItemAttributes");
         params.put("MinimumPrice", String.valueOf(minPrice));
         params.put("MaximumPrice", String.valueOf(maxPrice));
         params.put("AssociateTag", "koichiro wada");
         params.put("Keywords", "あ|い|う|え|お");
-        params.put("SearchIndex", "Books");
+        params.put("SearchIndex", category);
         String url = helper.sign(params);
         Log.d(AppUtil.APP_NAME, "接続します url : " + url);
 
@@ -76,6 +91,12 @@ public class AmazonApi {
         Log.d(AppUtil.APP_NAME, "response body : " + xml);
         Node doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new ByteArrayInputStream(xml.getBytes("UTF-8")));
         return doc;
+    }
+    
+    private String getCategoryByRandom() {
+        Random random = new Random(System.currentTimeMillis());
+        String category = categories.get(random.nextInt(categories.size()));
+        return category;
     }
 
 }

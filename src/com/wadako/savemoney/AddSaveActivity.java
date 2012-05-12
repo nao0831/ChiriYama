@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -45,7 +47,7 @@ public class AddSaveActivity extends Activity {
                    String text = vv.getText().toString();
                    if (StringUtils.isNotBlank(text)) {
                        TextView priceText = (TextView)findViewById(R.id.selectPriceButton);
-                       priceText.setText(text + "円");
+                       priceText.setText(text);
                    }
                 }
                 return false;
@@ -56,9 +58,13 @@ public class AddSaveActivity extends Activity {
     private void initTableLayouts() {
         TableLayout objectTable = (TableLayout)findViewById(R.id.objectTable);
         for (int i = 0; i < objectTable.getChildCount(); i++) {
-            TableRow row = (TableRow)objectTable.getChildAt(i);
+            ViewGroup row = (ViewGroup)objectTable.getChildAt(i);
+            if (row instanceof FrameLayout) {
+                continue;
+            }
             for (int j = 0; j < row.getChildCount(); j++) {
-                View button = row.getChildAt(j);
+                View layout = row.getChildAt(j);
+                View button = layout.findViewById(R.id.imageButton1);
                 button.setOnClickListener(objectListener);
             }
         }
@@ -104,7 +110,7 @@ public class AddSaveActivity extends Activity {
                 String priceStr = priceView.getText().toString();
                 int price;
                 try {
-                    price = Integer.valueOf(priceStr.substring(0, priceStr.length() - 1));
+                    price = Integer.valueOf(priceStr);
                     if (price == 0) throw new Exception();
                 } catch (Exception e) {
                     Toast.makeText(AddSaveActivity.this, "値段を選んで下さい", Toast.LENGTH_SHORT).show();
@@ -136,7 +142,7 @@ public class AddSaveActivity extends Activity {
                String text = editText.getText().toString();
                if (StringUtils.isNotBlank(text)) {
                    TextView priceText = (TextView)findViewById(R.id.selectPriceButton);
-                   priceText.setText(text + "円");
+                   priceText.setText(text);
                }
                
             }
@@ -160,6 +166,7 @@ public class AddSaveActivity extends Activity {
             ImageButton button = (ImageButton)v;
             Drawable d = button.getDrawable();
             findViewById(R.id.selectObjectButton).setVisibility(View.GONE);
+            showPriceTable();
             ImageButton selectedObjectButton = (ImageButton)findViewById(R.id.selectedObject);
             selectedObjectButton.setImageDrawable(d);
             selectedObjectButton.setVisibility(View.VISIBLE);
@@ -179,7 +186,7 @@ public class AddSaveActivity extends Activity {
             TextView view = (TextView)v;
             String yen = view.getText().toString();
             TextView selectPriceButton = (TextView)findViewById(R.id.selectPriceButton);
-            selectPriceButton.setText(yen);
+            selectPriceButton.setText(yen.substring(0, yen.length() - 1));
         }
         
     }
