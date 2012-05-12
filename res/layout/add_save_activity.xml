@@ -65,7 +65,7 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:paddingTop="1dip"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -258,7 +258,7 @@
         android:layout_height="0dip"
         android:layout_weight="1"
         android:paddingTop="1dip"
-        android:visibility="visible" >
+        android:visibility="gone" >
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -401,7 +401,8 @@
         android:id="@+id/inputPriceView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center"
+        android:visibility="gone" >
 
         <EditText
             android:id="@+id/priceEditText"

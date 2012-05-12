@@ -25,6 +25,7 @@ public class StartActivity extends Activity {
 
         initButtons();
         initListView();
+
     }
 
     private void initButtons() {
@@ -32,7 +33,23 @@ public class StartActivity extends Activity {
         calcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int price = Save.getSumOfPrice(StartActivity.this);
+                if (price == 0) {
+                    Toast.makeText(StartActivity.this, "0円では貯金できません!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent();
+                    intent.setClass(StartActivity.this, ResultActivity.class);
+                    intent.putExtra("price", price);
+                    startActivity(intent);
+                }
+            }
+        });
+        
+        View endSaveButton = findViewById(R.id.endSaveButton);
+        endSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
 
@@ -92,14 +109,14 @@ public class StartActivity extends Activity {
             }
             Save save = saves.get(position);
             TextView priceText = (TextView)convertView.findViewById(R.id.priceText);
-            priceText.setText(save.getPrice() + "yen");
+            priceText.setText(save.getPrice() + " yen");
             ImageView objectImage = (ImageView)convertView.findViewById(R.id.objectImage);
             objectImage.setImageResource(save.getPictureResId());
             return convertView;
         }
-        
+
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

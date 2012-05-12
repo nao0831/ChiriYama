@@ -56,6 +56,15 @@ public class Save {
         return saves;
     }
     
+    public static int getSumOfPrice(Context context) {
+        int sum = 0;
+        List<Save> saves = getSaves(context);
+        for (Save save : saves) {
+            sum += save.price;
+        }
+        return sum;
+    }
+    
     public static String getPictureResIdKeyByNumber(int number) {
         return PICTURE_RES_ID_KEY + "_" + number;
     }
