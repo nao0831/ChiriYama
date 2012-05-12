@@ -60,7 +60,8 @@
                 android:layout_marginBottom="20dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
 
             <TextView
                 android:id="@+id/categoryText"
@@ -96,7 +97,8 @@
                 android:layout_height="100dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
             <TextView
                 android:id="@+id/categoryText2"
                 android:layout_width="wrap_content"
@@ -166,7 +168,8 @@
                 android:layout_height="100dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
             <TextView
                 android:id="@+id/categoryText"
                 android:layout_width="wrap_content"
@@ -200,7 +203,8 @@
                 android:layout_height="100dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
             <TextView
                 android:id="@+id/categoryText2"
                 android:layout_width="wrap_content"
@@ -271,7 +275,8 @@
                 android:layout_height="100dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
             <TextView
                 android:id="@+id/categoryText"
                 android:layout_width="wrap_content"
@@ -305,7 +310,8 @@
                 android:layout_height="100dip"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:scaleType="fitCenter" />
+                android:scaleType="fitCenter"
+                android:background="@drawable/object_bg" />
             <TextView
                 android:id="@+id/categoryText2"
                 android:layout_width="wrap_content"
