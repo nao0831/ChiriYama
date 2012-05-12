@@ -101,6 +101,21 @@ public class StartActivity extends Activity {
                 });
                 findViewById(R.id.coinImage).startAnimation(set);
                 
+                AnimationSet set2 = new AnimationSet(true);
+                set2.setStartOffset(1700);
+                Animation anim4 = new ScaleAnimation(1, 0.9f, 1, 0.9f);
+                anim4.setDuration(100);
+                Animation anim5 = new ScaleAnimation(1, 1f / 0.81f, 1, 1f / 0.81f);
+                anim5.setDuration(200);
+                anim5.setStartOffset(100);
+                Animation anim6 = new ScaleAnimation(1, 0.9f, 1, 0.9f);
+                anim6.setDuration(100);
+                anim6.setStartOffset(300);
+                set2.addAnimation(anim4);
+                set2.addAnimation(anim5);
+                set2.addAnimation(anim6);
+                
+                findViewById(R.id.bankImage).startAnimation(set2);
             }
         });
 
