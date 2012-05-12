@@ -3,6 +3,7 @@ package com.wadako.savemoney;
 
 import static org.joox.JOOX.$;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +50,17 @@ public class ResultActivity extends Activity {
     }
 
     private void initTextViews(int price) {
+        NumberFormat format = NumberFormat.getInstance();
+        format.setGroupingUsed(true);
+        String price1Str = format.format(price);
         TextView price1 = (TextView)findViewById(R.id.pricePerDayText);
-        price1.setText("¥" + (price) + "\n/day");
+        price1.setText("¥" + price1Str + "\n/day");
+        String price2Str = format.format(price * 30);
         TextView price2 = (TextView)findViewById(R.id.pricePerMonthText);
-        price2.setText("¥" + (price * 30) + "\n/month");
+        price2.setText("¥" + price2Str + "\n/month");
+        String price3Str = format.format(price * 365);
         TextView price3 = (TextView)findViewById(R.id.pricePerYearText);
-        price3.setText("¥" + (price * 365) + "\n/year");
+        price3.setText("¥" + price3Str + "\n/year");
     }
 
     private class SearchAmazonTask extends AsyncTask<Integer, Void, List<String>> {
