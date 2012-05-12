@@ -47,6 +47,8 @@ public class ResultActivity extends Activity {
         new SearchAmazonTask2(4).execute(price * 365);
 
         initTextViews(price);
+        
+        Toast.makeText(this, "1ヶ月,1年間我慢すればこんなものが買えちゃいます!", Toast.LENGTH_SHORT).show();
     }
 
     private void initTextViews(int price) {

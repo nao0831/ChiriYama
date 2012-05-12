@@ -13,6 +13,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
@@ -79,7 +80,7 @@ public class AmazonApi {
         params.put("MinimumPrice", String.valueOf(minPrice));
         params.put("MaximumPrice", String.valueOf(maxPrice));
         params.put("AssociateTag", "koichiro wada");
-        params.put("Keywords", "あ|い|う|え|お");
+        params.put("Keywords", getRandomKeywords(10));
         params.put("SearchIndex", category);
         params.put("Sort", "salesrank");
         String url = helper.sign(params);
@@ -98,6 +99,18 @@ public class AmazonApi {
         Random random = new Random(System.currentTimeMillis());
         String category = categories.get(random.nextInt(categories.size()));
         return category;
+    }
+    
+    private String getRandomKeywords(int number) {
+        String hiragana = "あ,い,う,え,お,か,き,く,け,こ,さ,し,す,せ,そ,た,ち,つ,て,と,な,に,ぬ,ね,の,は,ひ,ふ,へ,ほ,ま,み,む,め,も,や,ゆ,よ,わ,を,ん";
+        String[] hiraganas = StringUtils.splitByWholeSeparator(hiragana, ",");
+        Random random = new Random(System.currentTimeMillis());
+        String[] keywords = new String[number];
+        for (int i = 0; i < number; i++) {
+            int r = random.nextInt(hiraganas.length);
+            keywords[i] = hiraganas[r];
+        }
+        return StringUtils.join(keywords, '|');
     }
 
 }
