@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+
+    <Button
+        android:id="@+id/calcButton"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:text="Button" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/bar" >
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/saveList"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1.5" >
+    </ListView>
+    
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/bar" >
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/addSaveButton"
+        android:layout_width="100dip"
+        android:layout_height="wrap_content"
+        android:text="追加" 
+        />
+
+</LinearLayout>

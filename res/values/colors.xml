@@ -1,0 +1,21 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <drawable name="bg_color">#FFFAE8</drawable>
+    <!-- <color name="base">#d2c5d2</color> -->
+    <color name="bg">#fff</color>
+    <color name="text">#000</color>
+    <color name="bar">#000</color>
+    
+    
+    
+    
+    <color name="base">#ffffff</color>
+    <!-- <color name="main">#8f04a8</color> -->
+    <color name="main">#84cff9</color>
+    <!-- <color name="main_end">#6f0488</color> -->
+    <color name="main_end">#639cbc</color>
+    <!-- <color name="accent">#dcf900</color> -->
+    <color name="accent">#f18700</color>
+    <color name="colorstrip">#7000</color>
+
+</resources>

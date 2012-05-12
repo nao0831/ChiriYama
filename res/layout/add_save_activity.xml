@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/selectObjectButton"
+            android:layout_width="96dip"
+            android:layout_height="80dip"
+            android:layout_margin="10dip"
+            android:text="モノ"
+            android:textSize="23sp" />
+
+        <ImageButton
+            android:id="@+id/selectedObject"
+            android:layout_width="96dip"
+            android:layout_height="80dip"
+            android:layout_margin="10dip"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/selectPriceButton"
+            android:layout_width="96dip"
+            android:layout_height="80dip"
+            android:layout_margin="10dip"
+            android:text="値段"
+            android:textSize="23sp" />
+
+        <!--
+             <ImageButton
+            android:id="@+id/selectedPrice"
+            android:layout_width="0dip"
+            android:layout_height="80dip"
+            android:layout_weight="0.2"
+            android:src="@drawable/ic_launcher"
+            android:visibility="gone" />
+        -->
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dip"
+            android:layout_marginTop="20dip"
+            android:text="OK!" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/bar" >
+    </FrameLayout>
+
+    <TableLayout
+        android:id="@+id/objectTable"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingTop="1dip"
+        android:visibility="gone" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/beer_144"
+                android:tag="beer" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/candy_144"
+                android:tag="candy" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/frank_144"
+                android:tag="frank" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/humbager_144"
+                android:tag="humbager" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/lunchbox_144"
+                android:tag="lunchbox" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/book_144"
+                android:tag="book" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/car_144"
+                android:tag="car" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/cloth_144"
+                android:tag="cloth" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/coffee_144"
+                android:tag="coffee" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/ring_144"
+                android:tag="ring" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/juice_144"
+                android:tag="juice" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/pasta_144"
+                android:tag="pasta" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/pencil_144"
+                android:tag="pencil" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/potato_144"
+                android:tag="potato" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/train_144"
+                android:tag="train" />
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="0dip"
+                android:layout_height="72dip"
+                android:layout_weight="1"
+                android:background="#0000"
+                android:src="@drawable/tabacco_144"
+                android:tag="tabacco" />
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:id="@+id/priceTable"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:paddingTop="1dip"
+        android:visibility="visible" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="150円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="200円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="300円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="400円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="500円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1000円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="1500円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="2000円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="150円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:text="200円"
+                android:textColor="@color/text"
+                android:textSize="25sp" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/inputPriceView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <EditText
+            android:id="@+id/priceEditText"
+            android:layout_width="130dip"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="right"
+            android:inputType="number" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="円"
+            android:textColor="@color/text"
+            android:textSize="25sp" />
+
+        <Button
+            android:id="@+id/endInputButton"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:text="OK" />
+    </LinearLayout>
+
+</LinearLayout>
