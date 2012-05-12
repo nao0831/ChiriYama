@@ -69,6 +69,7 @@ public class ResultActivity extends Activity {
 
         private int number;
         private List<String> detailPageUrls = new ArrayList<String>();
+        private String category;
 
         public SearchAmazonTask(int number) {
             this.number = number;
@@ -90,6 +91,16 @@ public class ResultActivity extends Activity {
                     Node item = url.getParentNode().getParentNode();
                     String detailPageUrl = item.getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
                     detailPageUrls.add(detailPageUrl);
+                    Match itemMatch = $(item);
+                    Log.d("", "itemMatch : " + itemMatch.content());
+                    Match binding = itemMatch.find("Title");
+                    String content = binding.content();
+                    if (content.length() > 20) {
+                        category = binding.content().substring(0, 20) + "...";
+                    } else {
+                        category = content;
+                    }
+                    return urlList;
                 }
                 return urlList;
             } catch (Exception e) {
@@ -122,6 +133,9 @@ public class ResultActivity extends Activity {
                         public void onComplete(String url) {
                             child.findViewById(R.id.progressBar1).setVisibility(View.GONE);
                             imageView.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(0)));
+                            TextView categoryView = (TextView)child.findViewById(R.id.categoryText);
+                            categoryView.setVisibility(View.VISIBLE);
+                            categoryView.setText(category);
                         }
                     });
                     Log.d(AppUtil.APP_NAME, url);
@@ -134,6 +148,7 @@ public class ResultActivity extends Activity {
 
         private int number;
         private List<String> detailPageUrls = new ArrayList<String>();
+        private String category;
 
         public SearchAmazonTask2(int number) {
             this.number = number;
@@ -155,6 +170,15 @@ public class ResultActivity extends Activity {
                     Node item = url.getParentNode().getParentNode();
                     String detailPageUrl = item.getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
                     detailPageUrls.add(detailPageUrl);
+                    Match itemMatch = $(item);
+                    Match binding = itemMatch.find("Title");
+                    String content = binding.content();
+                    if (content.length() > 20) {
+                        category = binding.content().substring(0, 20) + "...";
+                    } else {
+                        category = content;
+                    }
+                    return urlList;
                 }
                 return urlList;
             } catch (Exception e) {
@@ -187,6 +211,9 @@ public class ResultActivity extends Activity {
                         public void onComplete(String url) {
                             child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
                             imageView.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(0)));
+                            TextView categoryView = (TextView)child.findViewById(R.id.categoryText2);
+                            categoryView.setVisibility(View.VISIBLE);
+                            categoryView.setText(category);
                         }
                     });
                     Log.d(AppUtil.APP_NAME, url);
