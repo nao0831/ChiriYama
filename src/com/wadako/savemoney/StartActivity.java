@@ -33,7 +33,7 @@ public class StartActivity extends Activity {
 
         initButtons();
         initListView();
-
+        updateListView();
     }
 
     private void initButtons() {
@@ -212,9 +212,17 @@ public class StartActivity extends Activity {
         return true;
      }
     
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findViewById(R.id.coinImage).clearAnimation();
+    }
+    
     private void updateListView() {
         ListView list = (ListView)findViewById(R.id.saveList);
         list.setAdapter(new MyAdapter());
         list.invalidateViews();
+        TextView text = (TextView)findViewById(R.id.sumPriceText);
+        text.setText("¥" + Save.getSumOfPrice(StartActivity.this));
     }
 }

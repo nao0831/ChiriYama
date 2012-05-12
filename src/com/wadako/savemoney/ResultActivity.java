@@ -39,19 +39,22 @@ public class ResultActivity extends Activity {
         price = intent.getIntExtra("price", 0);
 
         new SearchAmazonTask(0).execute(price);
+        new SearchAmazonTask2(0).execute(price);
         new SearchAmazonTask(2).execute(price * 30);
+        new SearchAmazonTask2(2).execute(price * 30);
         new SearchAmazonTask(4).execute(price * 365);
+        new SearchAmazonTask2(4).execute(price * 365);
 
         initTextViews(price);
     }
 
     private void initTextViews(int price) {
         TextView price1 = (TextView)findViewById(R.id.pricePerDayText);
-        price1.setText((price) + "円");
+        price1.setText("¥" + (price) + "\n/day");
         TextView price2 = (TextView)findViewById(R.id.pricePerMonthText);
-        price2.setText((price * 30) + "円");
+        price2.setText("¥" + (price * 30) + "\n/month");
         TextView price3 = (TextView)findViewById(R.id.pricePerYearText);
-        price3.setText((price * 365) + "円");
+        price3.setText("¥" + (price * 365) + "\n/year");
     }
 
     private class SearchAmazonTask extends AsyncTask<Integer, Void, List<String>> {
@@ -90,7 +93,6 @@ public class ResultActivity extends Activity {
         @Override
         protected void onPostExecute(List<String> result) {
             super.onPostExecute(result);
-
             if (result == null) {
                 Toast.makeText(ResultActivity.this, "通信中にエラーが起きました", Toast.LENGTH_LONG).show();
             } else {
@@ -99,7 +101,6 @@ public class ResultActivity extends Activity {
                 if (result.size() == 0) {
                     Log.d(AppUtil.APP_NAME, "画像なかったよ");
                     child.findViewById(R.id.progressBar1).setVisibility(View.GONE);
-                    child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
                 } else {
                     Log.d(AppUtil.APP_NAME, "画像あったから取得するよ");
                     String url = result.get(0);
@@ -116,24 +117,71 @@ public class ResultActivity extends Activity {
                         }
                     });
                     Log.d(AppUtil.APP_NAME, url);
-                    if (result.size() > 1) {
-                        Log.d(AppUtil.APP_NAME, "もう一枚画像を取得するよ");
-                        final UrlImageView imageView2 = (UrlImageView)child.findViewById(R.id.amazon2);
-                        imageView2.setImageUrl(result.get(1),
-                                new UrlImageView.OnImageLoadListener() {
-                                    @Override
-                                    public void onStart(String url) {
-                                    }
+                }
+            }
+        }
+    }
+    
+    private class SearchAmazonTask2 extends AsyncTask<Integer, Void, List<String>> {
 
-                                    @Override
-                                    public void onComplete(String url) {
-                                        child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
-                                        imageView2.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(1)));
-                                    }
-                                });
-                    } else {
-                        child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
-                    }
+        private int number;
+        private List<String> detailPageUrls = new ArrayList<String>();
+
+        public SearchAmazonTask2(int number) {
+            this.number = number;
+        }
+
+        @Override
+        protected List<String> doInBackground(Integer... params) {
+
+            AmazonApi api = new AmazonApi();
+            try {
+                Node root = api.searchItemsByPrice(params[0]);
+                Match match = $(root);
+                Match urls = match.find("Item>LargeImage>URL");
+                List<String> urlList = new ArrayList<String>();
+                for (int i = 0; i < urls.size(); i++) {
+                    Element url = urls.get(i);
+                    String urlStr = url.getChildNodes().item(0).getNodeValue();
+                    urlList.add(urlStr);
+                    Node item = url.getParentNode().getParentNode();
+                    String detailPageUrl = item.getChildNodes().item(1).getChildNodes().item(0).getNodeValue();
+                    detailPageUrls.add(detailPageUrl);
+                }
+                return urlList;
+            } catch (Exception e) {
+                Log.e(AppUtil.APP_NAME, "通信中にエラーが起きました", e);
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(List<String> result) {
+            super.onPostExecute(result);
+            if (result == null) {
+                Toast.makeText(ResultActivity.this, "通信中にエラーが起きました", Toast.LENGTH_LONG).show();
+            } else {
+                ViewGroup whole = (ViewGroup)findViewById(R.id.whole);
+                final View child = whole.getChildAt(number);
+                if (result.size() == 0) {
+                    Log.d(AppUtil.APP_NAME, "画像なかったよ");
+                    child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
+                } else {
+                    Log.d(AppUtil.APP_NAME, "画像あったから取得するよ");
+                    String url = result.get(0);
+                    final UrlImageView imageView = (UrlImageView)child.findViewById(R.id.amazon2);
+                    imageView.setImageUrl(url, new UrlImageView.OnImageLoadListener() {
+                        @Override
+                        public void onStart(String url) {
+                        }
+                        
+                        @Override
+                        public void onComplete(String url) {
+                            child.findViewById(R.id.progressBar2).setVisibility(View.GONE);
+                            imageView.setOnClickListener(new ImageOnClickListener(detailPageUrls.get(0)));
+                        }
+                    });
+                    Log.d(AppUtil.APP_NAME, url);
                 }
             }
         }

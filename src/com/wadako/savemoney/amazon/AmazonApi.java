@@ -51,7 +51,7 @@ public class AmazonApi {
             HttpConnectionParams.setConnectionTimeout(params, TIME_OUT); // 接続のタイムアウト
             HttpConnectionParams.setSoTimeout(params, TIME_OUT); // データ取得のタイムアウト
             client.setParams(params);
-            categories.add("Beauty");
+//            categories.add("Beauty");
             categories.add("Electronics");
             categories.add("Grocery");
             categories.add("Hobbies");
@@ -81,6 +81,7 @@ public class AmazonApi {
         params.put("AssociateTag", "koichiro wada");
         params.put("Keywords", "あ|い|う|え|お");
         params.put("SearchIndex", category);
+        params.put("Sort", "salesrank");
         String url = helper.sign(params);
         Log.d(AppUtil.APP_NAME, "接続します url : " + url);
 

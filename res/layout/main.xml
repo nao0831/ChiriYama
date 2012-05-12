@@ -13,19 +13,35 @@
         android:layout_weight="1"
         android:text="Button"
         android:visibility="gone" />
-    
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="280dip"
         android:orientation="vertical" >
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/coinImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="200dip"
-            android:layout_marginTop="120dip"
-            android:src="@drawable/coin_192" />
+            android:layout_marginTop="120dip" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/coin_192" />
+
+            <TextView
+                android:id="@+id/sumPriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="¥100"
+                android:textColor="@color/text"
+                android:textSize="23sp" />
+
+        </RelativeLayout>
 
         <ImageView
             android:id="@+id/imageView1"
@@ -41,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="14dp"
             android:layout_marginBottom="4dip"
+            android:layout_marginLeft="14dp"
             android:src="@drawable/button1" />
 
         <ImageView
@@ -51,10 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dip"
             android:layout_marginBottom="4dip"
+            android:layout_marginRight="10dip"
             android:src="@drawable/button2" />
-
     </RelativeLayout>
 
     <FrameLayout
