@@ -32,9 +32,10 @@ public class AmazonApi {
 
     public static final String ENDPOINT = "ecs.amazonaws.jp";
 
-    public static final String AWS_ACCESS_KEY_ID = "AKIAI5FLLB7K7T5MKMEQ";
-
-    public static final String AWS_SECRET_KEY = "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";
+    //アクセスキーを入れて下さい
+    public static final String AWS_ACCESS_KEY_ID = "";
+    //シークレットキーを入れて下さい
+    public static final String AWS_SECRET_KEY = "";
 
     private static final int TIME_OUT = 30000;
     
